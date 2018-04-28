@@ -7,21 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F6AAE4DB3D420C901C63817 /* Pods_Time_Clocker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468B1DA1CCAC9D0F9920CFBE /* Pods_Time_Clocker.framework */; };
+		CF140ECD208EC21A0005037B /* DateSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF140ECC208EC21A0005037B /* DateSelectionVC.swift */; };
 		CF89780C208E6678002CE786 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89780B208E6678002CE786 /* AppDelegate.swift */; };
-		CF89780E208E6678002CE786 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89780D208E6678002CE786 /* ViewController.swift */; };
+		CF89780E208E6678002CE786 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89780D208E6678002CE786 /* MainVC.swift */; };
 		CF897811208E6678002CE786 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF89780F208E6678002CE786 /* Main.storyboard */; };
 		CF897813208E667B002CE786 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF897812208E667B002CE786 /* Assets.xcassets */; };
 		CF897816208E667B002CE786 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF897814208E667B002CE786 /* LaunchScreen.storyboard */; };
+		CF89781E208E6D0A002CE786 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89781D208E6D0A002CE786 /* TimeCell.swift */; };
+		CF897820208E6F2A002CE786 /* TimePunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89781F208E6F2A002CE786 /* TimePunch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		468B1DA1CCAC9D0F9920CFBE /* Pods_Time_Clocker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Time_Clocker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C033D0E2BEF4BD81399451A /* Pods-Time_Clocker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time_Clocker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Time_Clocker/Pods-Time_Clocker.release.xcconfig"; sourceTree = "<group>"; };
+		C4D73741273C2282F7C8576E /* Pods-Time_Clocker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time_Clocker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time_Clocker/Pods-Time_Clocker.debug.xcconfig"; sourceTree = "<group>"; };
+		CF140ECC208EC21A0005037B /* DateSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionVC.swift; sourceTree = "<group>"; };
 		CF897808208E6678002CE786 /* Time_Clocker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Time_Clocker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF89780B208E6678002CE786 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CF89780D208E6678002CE786 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CF89780D208E6678002CE786 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		CF897810208E6678002CE786 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CF897812208E667B002CE786 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF897815208E667B002CE786 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF897817208E667B002CE786 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF89781D208E6D0A002CE786 /* TimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
+		CF89781F208E6F2A002CE786 /* TimePunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePunch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +39,72 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F6AAE4DB3D420C901C63817 /* Pods_Time_Clocker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		231659413A09009E5795B2AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				468B1DA1CCAC9D0F9920CFBE /* Pods_Time_Clocker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF4948A7CA1DA21BEA8C41BB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C4D73741273C2282F7C8576E /* Pods-Time_Clocker.debug.xcconfig */,
+				5C033D0E2BEF4BD81399451A /* Pods-Time_Clocker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CF140EC8208EC02D0005037B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CF89780D208E6678002CE786 /* MainVC.swift */,
+				CF140ECC208EC21A0005037B /* DateSelectionVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CF140EC9208EC0520005037B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF89780F208E6678002CE786 /* Main.storyboard */,
+				CF89781D208E6D0A002CE786 /* TimeCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF140ECA208EC0630005037B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF89781F208E6F2A002CE786 /* TimePunch.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF140ECB208EC08A0005037B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF897812208E667B002CE786 /* Assets.xcassets */,
+				CF897814208E667B002CE786 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		CF8977FF208E6678002CE786 = {
 			isa = PBXGroup;
 			children = (
 				CF89780A208E6678002CE786 /* Time_Clocker */,
 				CF897809208E6678002CE786 /* Products */,
+				BF4948A7CA1DA21BEA8C41BB /* Pods */,
+				231659413A09009E5795B2AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,10 +120,10 @@
 			isa = PBXGroup;
 			children = (
 				CF89780B208E6678002CE786 /* AppDelegate.swift */,
-				CF89780D208E6678002CE786 /* ViewController.swift */,
-				CF89780F208E6678002CE786 /* Main.storyboard */,
-				CF897812208E667B002CE786 /* Assets.xcassets */,
-				CF897814208E667B002CE786 /* LaunchScreen.storyboard */,
+				CF140EC8208EC02D0005037B /* Controller */,
+				CF140EC9208EC0520005037B /* View */,
+				CF140ECA208EC0630005037B /* Model */,
+				CF140ECB208EC08A0005037B /* Supporting Files */,
 				CF897817208E667B002CE786 /* Info.plist */,
 			);
 			path = Time_Clocker;
@@ -71,9 +136,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF89781A208E667B002CE786 /* Build configuration list for PBXNativeTarget "Time_Clocker" */;
 			buildPhases = (
+				5E5D088F8BEC6C2EEA9CFFEA /* [CP] Check Pods Manifest.lock */,
 				CF897804208E6678002CE786 /* Sources */,
 				CF897805208E6678002CE786 /* Frameworks */,
 				CF897806208E6678002CE786 /* Resources */,
+				EED75B3EB6983062474FA3EB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,13 +197,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5E5D088F8BEC6C2EEA9CFFEA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Time_Clocker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EED75B3EB6983062474FA3EB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Time_Clocker/Pods-Time_Clocker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Time_Clocker/Pods-Time_Clocker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CF897804208E6678002CE786 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF89780E208E6678002CE786 /* ViewController.swift in Sources */,
+				CF140ECD208EC21A0005037B /* DateSelectionVC.swift in Sources */,
+				CF89781E208E6D0A002CE786 /* TimeCell.swift in Sources */,
+				CF89780E208E6678002CE786 /* MainVC.swift in Sources */,
 				CF89780C208E6678002CE786 /* AppDelegate.swift in Sources */,
+				CF897820208E6F2A002CE786 /* TimePunch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,15 +387,14 @@
 		};
 		CF89781B208E667B002CE786 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4D73741273C2282F7C8576E /* Pods-Time_Clocker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HJ3N23F853;
 				INFOPLIST_FILE = Time_Clocker/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shane.talbert1-gmail.com.Time-Clocker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -296,15 +404,14 @@
 		};
 		CF89781C208E667B002CE786 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C033D0E2BEF4BD81399451A /* Pods-Time_Clocker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HJ3N23F853;
 				INFOPLIST_FILE = Time_Clocker/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shane.talbert1-gmail.com.Time-Clocker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
