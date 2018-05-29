@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TimePunch {
+class TimePunch : Codable {
     
     //This will be guarenteed since it is needed to start an instance
     var timeIn: Date!

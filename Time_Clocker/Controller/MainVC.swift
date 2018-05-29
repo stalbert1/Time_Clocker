@@ -18,6 +18,9 @@ class MainVC: UIViewController, receivePunch {
     
     var timePunches = [TimePunch]()
     
+    //file path where our custom plist is going to be to write our data
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("TimePunches.plist")
+    
     var totalTime : TimeInterval = 0
     
     var isInUpdateMode = false
@@ -28,7 +31,24 @@ class MainVC: UIViewController, receivePunch {
         mainTableView.delegate = self
         mainTableView.dataSource = self
         
+        loadData()
         updateTable()
+        
+    }
+    
+    func loadData() {
+        
+        //loads data saved as plist in the update table method...
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            print("we must have data")
+            let decoder = PropertyListDecoder()
+            do {
+                timePunches = try decoder.decode([TimePunch].self, from: data)
+                print("i think it loaded")
+            } catch {
+                print("error decoding \(error)")
+            }
+        }
         
     }
 
@@ -85,6 +105,17 @@ class MainVC: UIViewController, receivePunch {
         lblTotalTime.text = ("\(hours)Hrs \(minutes)Min.")
         mainTableView.reloadData()
         
+        //need to save data
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let data = try encoder.encode(timePunches)
+            try data.write(to: dataFilePath!)
+            print("I think it wrote")
+        } catch {
+            print("Error while writing \(error)")
+        }
+        
     }
     
     //delegate method for what happens when a punch is received from the DateSelectionVC
@@ -117,8 +148,6 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCell
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             // handle action by updating model with deletion
             print("delete action initiated on \(indexPath.section), \(indexPath.row)")
-            //print("Thing that would be changed is \(self.mySeperatedReceipts[indexPath.section][indexPath.row].information)")
-            //timePunches[indexPath.row]
             self.timePunches.remove(at: indexPath.row)
             self.updateTable()
         }
@@ -127,7 +156,7 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCell
             
             print("updateAction triggered")
             self.isInUpdateMode = true
-            //this should trigger the segue and pass the time punch object
+            //this triggers the segue and updates the indexpath that needs to be updated upon return
             self.indexToUpdate = indexPath.row
             self.performSegue(withIdentifier: "segMainVCtoDateVC", sender: nil)
             
