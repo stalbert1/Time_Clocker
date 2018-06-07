@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0F6AAE4DB3D420C901C63817 /* Pods_Time_Clocker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468B1DA1CCAC9D0F9920CFBE /* Pods_Time_Clocker.framework */; };
 		CF140ECD208EC21A0005037B /* DateSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF140ECC208EC21A0005037B /* DateSelectionVC.swift */; };
+		CF4555A120C3445800D91AB3 /* PayTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4555A020C3445800D91AB3 /* PayTableCell.swift */; };
+		CF4555A320C3494900D91AB3 /* PayCheckTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4555A220C3494900D91AB3 /* PayCheckTableVC.swift */; };
+		CF4555A520C34F2A00D91AB3 /* Paycheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4555A420C34F2A00D91AB3 /* Paycheck.swift */; };
+		CF563FA820C7122700C5E0F6 /* PayCheckCreatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF563FA720C7122700C5E0F6 /* PayCheckCreatorVC.swift */; };
 		CF89780C208E6678002CE786 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89780B208E6678002CE786 /* AppDelegate.swift */; };
 		CF89780E208E6678002CE786 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89780D208E6678002CE786 /* MainVC.swift */; };
 		CF897811208E6678002CE786 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF89780F208E6678002CE786 /* Main.storyboard */; };
@@ -23,6 +27,10 @@
 		5C033D0E2BEF4BD81399451A /* Pods-Time_Clocker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time_Clocker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Time_Clocker/Pods-Time_Clocker.release.xcconfig"; sourceTree = "<group>"; };
 		C4D73741273C2282F7C8576E /* Pods-Time_Clocker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time_Clocker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time_Clocker/Pods-Time_Clocker.debug.xcconfig"; sourceTree = "<group>"; };
 		CF140ECC208EC21A0005037B /* DateSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionVC.swift; sourceTree = "<group>"; };
+		CF4555A020C3445800D91AB3 /* PayTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayTableCell.swift; sourceTree = "<group>"; };
+		CF4555A220C3494900D91AB3 /* PayCheckTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayCheckTableVC.swift; sourceTree = "<group>"; };
+		CF4555A420C34F2A00D91AB3 /* Paycheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paycheck.swift; sourceTree = "<group>"; };
+		CF563FA720C7122700C5E0F6 /* PayCheckCreatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayCheckCreatorVC.swift; sourceTree = "<group>"; };
 		CF897808208E6678002CE786 /* Time_Clocker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Time_Clocker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF89780B208E6678002CE786 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF89780D208E6678002CE786 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -68,6 +76,8 @@
 			children = (
 				CF89780D208E6678002CE786 /* MainVC.swift */,
 				CF140ECC208EC21A0005037B /* DateSelectionVC.swift */,
+				CF4555A220C3494900D91AB3 /* PayCheckTableVC.swift */,
+				CF563FA720C7122700C5E0F6 /* PayCheckCreatorVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -77,6 +87,7 @@
 			children = (
 				CF89780F208E6678002CE786 /* Main.storyboard */,
 				CF89781D208E6D0A002CE786 /* TimeCell.swift */,
+				CF4555A020C3445800D91AB3 /* PayTableCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -85,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				CF89781F208E6F2A002CE786 /* TimePunch.swift */,
+				CF4555A420C34F2A00D91AB3 /* Paycheck.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -242,10 +254,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF140ECD208EC21A0005037B /* DateSelectionVC.swift in Sources */,
+				CF563FA820C7122700C5E0F6 /* PayCheckCreatorVC.swift in Sources */,
+				CF4555A520C34F2A00D91AB3 /* Paycheck.swift in Sources */,
 				CF89781E208E6D0A002CE786 /* TimeCell.swift in Sources */,
+				CF4555A320C3494900D91AB3 /* PayCheckTableVC.swift in Sources */,
 				CF89780E208E6678002CE786 /* MainVC.swift in Sources */,
 				CF89780C208E6678002CE786 /* AppDelegate.swift in Sources */,
 				CF897820208E6F2A002CE786 /* TimePunch.swift in Sources */,
+				CF4555A120C3445800D91AB3 /* PayTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,7 +410,10 @@
 				DEVELOPMENT_TEAM = HJ3N23F853;
 				INFOPLIST_FILE = Time_Clocker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shane.talbert1-gmail.com.Time-Clocker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -411,7 +430,10 @@
 				DEVELOPMENT_TEAM = HJ3N23F853;
 				INFOPLIST_FILE = Time_Clocker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shane.talbert1-gmail.com.Time-Clocker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

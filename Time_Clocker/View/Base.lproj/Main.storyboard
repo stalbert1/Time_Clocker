@@ -1,14 +1,269 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tQ6-f4-Ms1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Pay Check TableVC-->
+        <scene sceneID="xUG-lb-N95">
+            <objects>
+                <viewController id="tQ6-f4-Ms1" customClass="PayCheckTableVC" customModule="Time_Clocker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ypi-zQ-Px7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04B-8y-4eN">
+                                <rect key="frame" x="0.0" y="542" width="375" height="125"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QFZ-gB-ryh">
+                                        <rect key="frame" x="8" y="8" width="359" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="A4W-Y6-WNw"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="Show Verified"/>
+                                            <segment title="Hide Verified"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOt-Cs-qkM">
+                                        <rect key="frame" x="8" y="67" width="359" height="50"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="D3w-oX-u9l"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Create New Paycheck">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createNewPaycheckPressed:" destination="tQ6-f4-Ms1" eventType="touchUpInside" id="lmS-ZH-7z0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.77810329860000005" green="0.85970052080000003" blue="0.94666883680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="bOt-Cs-qkM" secondAttribute="bottom" constant="8" id="8ie-xH-pmH"/>
+                                    <constraint firstItem="QFZ-gB-ryh" firstAttribute="top" secondItem="04B-8y-4eN" secondAttribute="top" constant="8" id="9Ff-gp-bCF"/>
+                                    <constraint firstItem="bOt-Cs-qkM" firstAttribute="leading" secondItem="04B-8y-4eN" secondAttribute="leading" constant="8" id="Vb5-H6-k0z"/>
+                                    <constraint firstAttribute="height" constant="125" id="YIu-v7-FkL"/>
+                                    <constraint firstAttribute="trailing" secondItem="bOt-Cs-qkM" secondAttribute="trailing" constant="8" id="izL-Jx-fah"/>
+                                    <constraint firstItem="QFZ-gB-ryh" firstAttribute="leading" secondItem="04B-8y-4eN" secondAttribute="leading" constant="8" id="oeG-jx-L32"/>
+                                    <constraint firstAttribute="trailing" secondItem="QFZ-gB-ryh" secondAttribute="trailing" constant="8" id="wPp-Uq-9Fy"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HM0-Ep-UwA">
+                                <rect key="frame" x="0.0" y="20" width="375" height="522"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="payCell" rowHeight="175" id="4oN-CI-azu" customClass="PayTableCell" customModule="Time_Clocker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="175"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4oN-CI-azu" id="GsL-PP-NSC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cgw-Te-Xjq">
+                                                    <rect key="frame" x="20" y="14" width="335" height="148"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="c2p-SE-NWu">
+                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="148"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Palms Of Pasadena Hospital" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuN-eT-KZa">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="33.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Week Starting Thur Nov 13, 2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FG1-Qh-F5k">
+                                                                    <rect key="frame" x="0.0" y="33.5" width="335" height="23"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Week Ending Thur Nov 20, 2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmm-Ml-TlC">
+                                                                    <rect key="frame" x="0.0" y="56.5" width="335" height="23"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay Date Thur Nov 20, 2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtG-TT-7FM">
+                                                                    <rect key="frame" x="0.0" y="79.5" width="335" height="22.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hours Worked = 32 Hrs 51Min." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vw4-kF-Qt9">
+                                                                    <rect key="frame" x="0.0" y="102" width="335" height="23"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paycheck is not verified" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrB-8q-w3v">
+                                                                    <rect key="frame" x="0.0" y="125" width="335" height="23"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.77810329860000005" green="0.85970052080000003" blue="0.94666883680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="c2p-SE-NWu" firstAttribute="leading" secondItem="Cgw-Te-Xjq" secondAttribute="leading" id="9G1-9S-J7S"/>
+                                                        <constraint firstItem="c2p-SE-NWu" firstAttribute="top" secondItem="Cgw-Te-Xjq" secondAttribute="top" id="KGQ-WH-bEe"/>
+                                                        <constraint firstAttribute="trailing" secondItem="c2p-SE-NWu" secondAttribute="trailing" id="SEy-wj-HOh"/>
+                                                        <constraint firstAttribute="bottom" secondItem="c2p-SE-NWu" secondAttribute="bottom" id="eHY-AZ-pZj"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Cgw-Te-Xjq" secondAttribute="bottom" constant="2" id="71V-mc-74m"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Cgw-Te-Xjq" secondAttribute="trailing" constant="5" id="Bdd-ve-syc"/>
+                                                <constraint firstItem="Cgw-Te-Xjq" firstAttribute="leading" secondItem="GsL-PP-NSC" secondAttribute="leadingMargin" constant="5" id="aZ6-Ih-edF"/>
+                                                <constraint firstItem="Cgw-Te-Xjq" firstAttribute="top" secondItem="GsL-PP-NSC" secondAttribute="topMargin" constant="3" id="gtX-cO-cPu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="lblEmployeersName" destination="TuN-eT-KZa" id="8EU-Av-BFN"/>
+                                            <outlet property="lblHoursWorked" destination="Vw4-kF-Qt9" id="fZt-uC-ybe"/>
+                                            <outlet property="lblPayDate" destination="CtG-TT-7FM" id="3di-DR-zb1"/>
+                                            <outlet property="lblVerified" destination="jrB-8q-w3v" id="uYw-gl-6O3"/>
+                                            <outlet property="lblWeekEnding" destination="hmm-Ml-TlC" id="ybD-sZ-DGz"/>
+                                            <outlet property="lblWeekStarting" destination="FG1-Qh-F5k" id="yfX-dh-8bE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HM0-Ep-UwA" firstAttribute="top" secondItem="QGj-nS-wDR" secondAttribute="top" id="AQU-pC-2dF"/>
+                            <constraint firstItem="04B-8y-4eN" firstAttribute="trailing" secondItem="QGj-nS-wDR" secondAttribute="trailing" id="Izn-CW-m1j"/>
+                            <constraint firstItem="04B-8y-4eN" firstAttribute="centerX" secondItem="HM0-Ep-UwA" secondAttribute="centerX" id="OSW-PN-nD7"/>
+                            <constraint firstItem="04B-8y-4eN" firstAttribute="top" secondItem="HM0-Ep-UwA" secondAttribute="bottom" id="VUQ-jI-skV"/>
+                            <constraint firstItem="04B-8y-4eN" firstAttribute="bottom" secondItem="QGj-nS-wDR" secondAttribute="bottom" id="b0f-gb-Npd"/>
+                            <constraint firstItem="HM0-Ep-UwA" firstAttribute="leading" secondItem="QGj-nS-wDR" secondAttribute="leading" id="ryb-FW-EhX"/>
+                            <constraint firstItem="04B-8y-4eN" firstAttribute="leading" secondItem="QGj-nS-wDR" secondAttribute="leading" id="w7v-km-Zov"/>
+                            <constraint firstItem="HM0-Ep-UwA" firstAttribute="trailing" secondItem="QGj-nS-wDR" secondAttribute="trailing" id="wgf-RY-rlZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QGj-nS-wDR"/>
+                    </view>
+                    <connections>
+                        <outlet property="payCheckTable" destination="HM0-Ep-UwA" id="sge-tP-BTy"/>
+                        <outlet property="segVerifiedSelected" destination="QFZ-gB-ryh" id="mfk-4I-6PV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Bp-pf-ApU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1151.2" y="154.27286356821591"/>
+        </scene>
+        <!--Pay Check CreatorVC-->
+        <scene sceneID="lPI-LU-1bb">
+            <objects>
+                <viewController id="qxZ-Cr-aB5" customClass="PayCheckCreatorVC" customModule="Time_Clocker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LVf-CP-FUZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="LwT-dK-4aF">
+                                <rect key="frame" x="0.0" y="44" width="375" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="JsM-wL-ZYh"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="549917314.66119695">
+                                    <!--2018-06-05 18:48:34 +0000-->
+                                </date>
+                            </datePicker>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="y5i-Lo-D6Q">
+                                <rect key="frame" x="0.0" y="191" width="375" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="X8X-Fh-boj"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="549917394.60490203">
+                                    <!--2018-06-05 18:49:54 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay Date Starting..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bvd-Yp-u9I">
+                                <rect key="frame" x="16" y="20" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay Date Ending..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gma-mb-CCS">
+                                <rect key="frame" x="16" y="167" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbj-pz-SN6">
+                                <rect key="frame" x="16" y="314" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDa-ep-cPi">
+                                <rect key="frame" x="108" y="607" width="159" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="ANW-Gm-xEi"/>
+                                </constraints>
+                                <state key="normal" title="Enter Dates and Return"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6zy-kP-sDu">
+                                <rect key="frame" x="162" y="542" width="50" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="2rh-MA-Jgx"/>
+                                </constraints>
+                                <state key="normal" title="Escape"/>
+                            </button>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="w4M-Fb-7uP">
+                                <rect key="frame" x="0.0" y="338" width="375" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="paE-kS-Rg3"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="549917398.75927198">
+                                    <!--2018-06-05 18:49:58 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Bvd-Yp-u9I" firstAttribute="top" secondItem="qYD-Z9-KK4" secondAttribute="top" id="DHs-nk-a1A"/>
+                            <constraint firstItem="w4M-Fb-7uP" firstAttribute="leading" secondItem="qYD-Z9-KK4" secondAttribute="leading" id="FIP-pZ-1pq"/>
+                            <constraint firstItem="Gma-mb-CCS" firstAttribute="leading" secondItem="qYD-Z9-KK4" secondAttribute="leading" constant="16" id="Ffb-Fv-4f6"/>
+                            <constraint firstItem="6zy-kP-sDu" firstAttribute="centerX" secondItem="LVf-CP-FUZ" secondAttribute="centerX" id="IoO-Mx-EpN"/>
+                            <constraint firstItem="y5i-Lo-D6Q" firstAttribute="trailing" secondItem="qYD-Z9-KK4" secondAttribute="trailing" id="JAt-N2-v73"/>
+                            <constraint firstItem="qYD-Z9-KK4" firstAttribute="trailing" secondItem="Gma-mb-CCS" secondAttribute="trailing" constant="16" id="JS8-AT-G7S"/>
+                            <constraint firstItem="qYD-Z9-KK4" firstAttribute="trailing" secondItem="rbj-pz-SN6" secondAttribute="trailing" constant="16" id="U31-rO-VeT"/>
+                            <constraint firstItem="w4M-Fb-7uP" firstAttribute="top" secondItem="rbj-pz-SN6" secondAttribute="bottom" constant="3" id="UmB-cQ-c4k"/>
+                            <constraint firstItem="Gma-mb-CCS" firstAttribute="top" secondItem="LwT-dK-4aF" secondAttribute="bottom" constant="3" id="WPa-ZG-f70"/>
+                            <constraint firstItem="rbj-pz-SN6" firstAttribute="leading" secondItem="qYD-Z9-KK4" secondAttribute="leading" constant="16" id="WYS-i6-LmJ"/>
+                            <constraint firstItem="qYD-Z9-KK4" firstAttribute="bottom" secondItem="xDa-ep-cPi" secondAttribute="bottom" constant="15" id="Wg5-NH-UPx"/>
+                            <constraint firstItem="w4M-Fb-7uP" firstAttribute="trailing" secondItem="qYD-Z9-KK4" secondAttribute="trailing" id="XIf-Bv-3UJ"/>
+                            <constraint firstItem="y5i-Lo-D6Q" firstAttribute="leading" secondItem="qYD-Z9-KK4" secondAttribute="leading" id="XdJ-05-BMg"/>
+                            <constraint firstItem="y5i-Lo-D6Q" firstAttribute="top" secondItem="Gma-mb-CCS" secondAttribute="bottom" constant="3" id="ahy-nn-J8H"/>
+                            <constraint firstItem="rbj-pz-SN6" firstAttribute="top" secondItem="y5i-Lo-D6Q" secondAttribute="bottom" constant="3" id="dnu-Z4-GWd"/>
+                            <constraint firstItem="xDa-ep-cPi" firstAttribute="top" secondItem="6zy-kP-sDu" secondAttribute="bottom" constant="20" id="fgv-Kb-2wb"/>
+                            <constraint firstItem="Bvd-Yp-u9I" firstAttribute="leading" secondItem="qYD-Z9-KK4" secondAttribute="leading" constant="16" id="j1e-g4-DfB"/>
+                            <constraint firstItem="qYD-Z9-KK4" firstAttribute="trailing" secondItem="Bvd-Yp-u9I" secondAttribute="trailing" constant="16" id="j3r-n0-rUu"/>
+                            <constraint firstItem="xDa-ep-cPi" firstAttribute="centerX" secondItem="LVf-CP-FUZ" secondAttribute="centerX" id="n8i-ll-pgl"/>
+                            <constraint firstItem="LwT-dK-4aF" firstAttribute="top" secondItem="Bvd-Yp-u9I" secondAttribute="bottom" constant="3" id="ouk-dr-I0o"/>
+                            <constraint firstItem="LwT-dK-4aF" firstAttribute="trailing" secondItem="qYD-Z9-KK4" secondAttribute="trailing" id="wJW-PL-9y0"/>
+                            <constraint firstItem="LwT-dK-4aF" firstAttribute="leading" secondItem="qYD-Z9-KK4" secondAttribute="leading" id="wSR-rC-RCr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qYD-Z9-KK4"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TXd-e6-nLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1151" y="1050"/>
+        </scene>
         <!--MainVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -110,7 +365,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DoZ-j7-Qpc">
-                                                    <rect key="frame" x="5" y="2" width="310" height="95"/>
+                                                    <rect key="frame" x="5" y="2" width="365" height="95"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Start Apr 22 11:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dq3-MA-bJf">
                                                             <rect key="frame" x="5" y="8" width="180.5" height="21"/>
@@ -119,7 +374,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4Hr 30Min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4V-rt-gQs">
-                                                            <rect key="frame" x="172" y="30" width="136" height="35"/>
+                                                            <rect key="frame" x="227" y="30" width="136" height="35"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -183,7 +438,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="471" y="154"/>
         </scene>
         <!--Date SelectionVC-->
         <scene sceneID="UOS-je-30v">
@@ -262,7 +517,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l8x-kd-NeJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1212" y="133.5832083958021"/>
+            <point key="canvasLocation" x="470" y="1049"/>
         </scene>
     </scenes>
 </document>
