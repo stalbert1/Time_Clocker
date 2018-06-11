@@ -20,6 +20,7 @@
 		CF897816208E667B002CE786 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF897814208E667B002CE786 /* LaunchScreen.storyboard */; };
 		CF89781E208E6D0A002CE786 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89781D208E6D0A002CE786 /* TimeCell.swift */; };
 		CF897820208E6F2A002CE786 /* TimePunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89781F208E6F2A002CE786 /* TimePunch.swift */; };
+		CFE4B17320CC4B0700347812 /* STButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE4B17220CC4B0700347812 /* STButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		CF897817208E667B002CE786 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF89781D208E6D0A002CE786 /* TimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		CF89781F208E6F2A002CE786 /* TimePunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePunch.swift; sourceTree = "<group>"; };
+		CFE4B17220CC4B0700347812 /* STButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				CF89780F208E6678002CE786 /* Main.storyboard */,
 				CF89781D208E6D0A002CE786 /* TimeCell.swift */,
 				CF4555A020C3445800D91AB3 /* PayTableCell.swift */,
+				CFE4B17220CC4B0700347812 /* STButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -235,10 +238,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Time_Clocker/Pods-Time_Clocker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +266,7 @@
 				CF89781E208E6D0A002CE786 /* TimeCell.swift in Sources */,
 				CF4555A320C3494900D91AB3 /* PayCheckTableVC.swift in Sources */,
 				CF89780E208E6678002CE786 /* MainVC.swift in Sources */,
+				CFE4B17320CC4B0700347812 /* STButton.swift in Sources */,
 				CF89780C208E6678002CE786 /* AppDelegate.swift in Sources */,
 				CF897820208E6F2A002CE786 /* TimePunch.swift in Sources */,
 				CF4555A120C3445800D91AB3 /* PayTableCell.swift in Sources */,

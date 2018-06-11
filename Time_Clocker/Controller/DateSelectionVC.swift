@@ -22,13 +22,14 @@ class DateSelectionVC: UIViewController {
     var delegate : receivePunch?
     
     //would init to now as time in and nil as time out
-    var selectionMade : TimePunch = TimePunch(timeInPunch: Date())
+    var selectionMade : TimePunch = TimePunch()
     
     var lastDateSelected : Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view did load")
+        selectionMade.timeIn = Date()
     }
     
     override func viewDidAppear(_ animated: Bool) {

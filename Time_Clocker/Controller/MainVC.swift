@@ -8,24 +8,28 @@
 
 import UIKit
 import SwipeCellKit
+import RealmSwift
 
 class MainVC: UIViewController, receivePunch {
-  
+    
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var btnTimeStart: UIButton!
     @IBOutlet weak var btnTimeStop: UIButton!
     @IBOutlet weak var lblTotalTime: UILabel!
     
-    var timePunches = [TimePunch]()
-    
-    //file path where our custom plist is going to be to write our data
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("TimePunches.plist")
-    
     var totalTime : TimeInterval = 0
     
     var isInUpdateMode = false
     var indexToUpdate : Int?
+    
+    //New code
+    let realm = try! Realm()
+    //item that is sent from the PayCheckTableVC
+    var payCheckToEdit: Paycheck?
+    var timePunches: List<TimePunch>!
 
+    var lastPunch: TimePunch?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTableView.delegate = self
@@ -38,26 +42,18 @@ class MainVC: UIViewController, receivePunch {
     
     func loadData() {
         
-        //loads data saved as plist in the update table method...
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            print("we must have data")
-            let decoder = PropertyListDecoder()
-            do {
-                timePunches = try decoder.decode([TimePunch].self, from: data)
-                print("i think it loaded")
-            } catch {
-                print("error decoding \(error)")
-            }
-        }
-        
+        timePunches = payCheckToEdit?.timepunches
     }
-
+    
     @IBAction func timeStartPressed(_ sender: UIButton) {
         
         btnTimeStart.isEnabled = false
         btnTimeStop.isEnabled = true
-        let currentPunch = TimePunch(timeInPunch: Date())
-        timePunches.append(currentPunch)
+        
+        //let currentPunch = TimePunch(timeInPunch: Date())
+        let currentPunch = TimePunch()
+        currentPunch.timeIn = Date()
+        
         updateTable()
         
     }
@@ -66,7 +62,9 @@ class MainVC: UIViewController, receivePunch {
         
         btnTimeStart.isEnabled = true
         btnTimeStop.isEnabled = false
-        timePunches[timePunches.count-1].timeOut = Date()
+        
+        //this would crash for now
+        //timePunches[timePunches.count-1].timeOut = Date()
         updateTable()
         
     }
@@ -76,6 +74,12 @@ class MainVC: UIViewController, receivePunch {
         performSegue(withIdentifier: "segMainVCtoDateVC", sender: nil)
         
     }
+    
+    @IBAction func returnPressed(_ sender: UIButton) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segMainVCtoDateVC" {
@@ -90,12 +94,15 @@ class MainVC: UIViewController, receivePunch {
         
         for timePunch in timePunches {
             //add all totals and reassing to totaltime
+            
+            //may need to do or timein since it is now an optional
             if timePunch.timeOut != nil {
-                totalTime = totalTime + timePunch.timeOut!.timeIntervalSince(timePunch.timeIn)
+                totalTime = totalTime + timePunch.timeOut!.timeIntervalSince(timePunch.timeIn!)
             }
         }
-    
+        
     }
+    
     
     func updateTable () {
         
@@ -105,32 +112,26 @@ class MainVC: UIViewController, receivePunch {
         lblTotalTime.text = ("\(hours)Hrs \(minutes)Min.")
         mainTableView.reloadData()
         
-        //need to save data
-        let encoder = PropertyListEncoder()
-        
-        do {
-            let data = try encoder.encode(timePunches)
-            try data.write(to: dataFilePath!)
-            print("I think it wrote")
-        } catch {
-            print("Error while writing \(error)")
-        }
         
     }
     
     //delegate method for what happens when a punch is received from the DateSelectionVC
     func punchReceived(punch: TimePunch) {
         
-        if isInUpdateMode {
-            print("need to update the punch that was sent back.")
-            if let index : Int = indexToUpdate {
-                print(index)
-                timePunches.remove(at: index)
-                timePunches.insert(punch, at: index)
+        if let item = payCheckToEdit {
+            
+            do {
+                try self.realm.write {
+                    item.timepunches.append(punch)
+                    //self.realm.delete(item)
+                }
+                
+            } catch {
+                print("error \(error)")
             }
-        } else {
-            timePunches.append(punch)
         }
+ 
+        lastPunch = punch
         
         updateTable()
         isInUpdateMode = false
@@ -148,7 +149,28 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCell
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             // handle action by updating model with deletion
             print("delete action initiated on \(indexPath.section), \(indexPath.row)")
-            self.timePunches.remove(at: indexPath.row)
+            
+            //going to have to remove from the database and reload data
+            
+            //first step is to get the number of the list from the DB and see if you can make it match
+            
+            //var timepunches = List<TimePunch>() lives in the payCheckToEdit?.timepunches
+            if let item = self.payCheckToEdit {
+                
+                do {
+                    try self.realm.write {
+                        //item.timepunches.append(punch)
+                        item.timepunches.remove(at: indexPath.row)
+                        //self.realm.delete(item)
+                    }
+                    
+                } catch {
+                    print("error \(error)")
+                }
+            }
+            //self.timePunches.remove(at: indexPath.row)
+            
+            
             self.updateTable()
         }
         

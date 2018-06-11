@@ -24,19 +24,6 @@ class PayTableCell: SwipeTableViewCell {
         print("Paytable cell View custom")
     }
     
-//    func updateCell (employeersName: String, weekStarting: String, weekEnding: String, payDate: String, hoursWorked: String, payIsVerified: Bool) {
-//        lblEmployeersName.text = employeersName
-//        lblWeekStarting.text = weekStarting
-//        lblWeekEnding.text = weekEnding
-//        lblPayDate.text = payDate
-//        lblHoursWorked.text = hoursWorked
-//        
-//        if payIsVerified == true {
-//            lblVerified.text = "Paycheck is Verified"
-//        } else {
-//            lblVerified.text = "Paycheck Unverified"
-//        }
-//    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

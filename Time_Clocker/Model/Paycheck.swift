@@ -7,22 +7,30 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Paycheck : Codable {
+class Paycheck: Object {
     
-    var _payPeriodStart: Date?
-    var _payPeriodEnd: Date?
-    var _payDate: Date?
-    var _employeerName: String!
-    var _timePunches: [TimePunch]?
-    var _payCheckIsVerified: Bool = false
+    @objc dynamic var _payPeriodStart: Date? = nil
+    @objc dynamic var _payPeriodEnd: Date? = nil
+    @objc dynamic var _payDate: Date? = nil
+    @objc dynamic var _employeerName: String = ""
+    
+    //@objc dynamic var value: Class?
+    //@objc dynamic var _timePunches: [TimePunch]?
+    //@objc dynamic var timePunch: TimePunch?
+    
+    //kinda weird, why not var, seems like you could not update this list??? was a let at first...
+    var timepunches = List<TimePunch>()
+    
+    @objc dynamic var _payCheckIsVerified: Bool = false
     
     
-    init (employeerName: String) {
-        
-        _employeerName = employeerName
-        
-    }
+    //    init (employeerName: String) {
+    //
+    //        _employeerName = employeerName
+    //
+    //    }
     
     private func returnStringOfDate (date: Date) -> String {
         
@@ -31,6 +39,28 @@ class Paycheck : Codable {
         myFormatter.timeStyle = .short
         return myFormatter.string(from:date)
         
+    }
+    
+    func returnTimeWorkedAsString () -> String {
+        
+        var totalTime: TimeInterval = 0
+        
+        for timePunch in timepunches {
+            totalTime = totalTime + timePunch.returnTotalTime()
+        }
+        
+        let hours: Int = Int(totalTime / 3600)
+        let minutes: Int = Int(totalTime / 60) - (hours * 60)
+        return ("\(hours)Hrs \(minutes)Min.")
+        
+    }
+    
+    func calculateHours () -> TimeInterval {
+        var totalTime : TimeInterval = 0
+        for timePunch in timepunches {
+            totalTime = totalTime + timePunch.returnTotalTime()
+        }
+        return totalTime
     }
     
     var payPeriodStart: String {
@@ -43,7 +73,7 @@ class Paycheck : Codable {
     
     var payPeriodEnd: String {
         if _payPeriodEnd == nil {
-             return "Not Specified"
+            return "Not Specified"
         } else {
             return returnStringOfDate(date: _payPeriodEnd!)
         }
