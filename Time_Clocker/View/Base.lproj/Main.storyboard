@@ -27,8 +27,8 @@
                                             <constraint firstAttribute="height" constant="30" id="A4W-Y6-WNw"/>
                                         </constraints>
                                         <segments>
-                                            <segment title="Show All"/>
-                                            <segment title="Unverified Only"/>
+                                            <segment title="Unverified Paychecks"/>
+                                            <segment title="Verified Paychecks"/>
                                         </segments>
                                         <connections>
                                             <action selector="verifiedSegChanged:" destination="tQ6-f4-Ms1" eventType="valueChanged" id="IOg-bD-a8n"/>

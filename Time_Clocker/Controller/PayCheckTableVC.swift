@@ -26,6 +26,7 @@ class PayCheckTableVC: UIViewController {
         payCheckTable.delegate = self
         payCheckTable.dataSource = self
         
+        paychecks = realm.objects(Paycheck.self)
         loadData()
         
     }
@@ -35,17 +36,9 @@ class PayCheckTableVC: UIViewController {
         //maybe this should be incorperated inside the load data function..???
         //reason being is when you make a change to verify the check you want it to dis appear from that list...
         
-        //Show hide verified changed...
-        if segVerifiedSelected.selectedSegmentIndex == 0 {
-            //show all selected
-            print("show all selected")
-            loadData()
-        } else {
-            //Unverified only selected
-            print("Unverfied only selected")
-            paychecks = paychecks.filter("_payCheckIsVerified == %@", true).sorted(byKeyPath: "_employeerName", ascending: true)
-            payCheckTable.reloadData()
-        }
+        loadData()
+        
+       
     }
     
     
@@ -54,8 +47,41 @@ class PayCheckTableVC: UIViewController {
     }
     
     func loadData() {
-        paychecks = realm.objects(Paycheck.self)
+        
+        //Show hide verified changed...
+        if segVerifiedSelected.selectedSegmentIndex == 0 {
+            
+            //have to start off by showing all then filtering down from that point.
+            paychecks = realm.objects(Paycheck.self)
+            print("show unverified selected which is new or default")
+            paychecks = paychecks.filter("_payCheckIsVerified == %@", false).sorted(byKeyPath: "_employeerName", ascending: true)
+            //loadData()
+        } else {
+            
+            paychecks = realm.objects(Paycheck.self)
+            print("Verified selected")
+            paychecks = paychecks.filter("_payCheckIsVerified == %@", true).sorted(byKeyPath: "_employeerName", ascending: true)
+            //payCheckTable.reloadData()
+        }
+        
+        //this will load all objects in the database.  Not using this for now.  Could put an extra seg controller segment and do this as a 3rd choice...
+        //paychecks = realm.objects(Paycheck.self)
+        
         payCheckTable.reloadData()
+    }
+    
+    func dateString (date: Date?) -> String {
+        
+        let myFormatter = DateFormatter()
+        myFormatter.dateStyle = .short
+        myFormatter.timeStyle = .none
+        
+        
+        if date == nil {
+            return "No Date"
+        } else {
+            return myFormatter.string(from: date!)
+        }
     }
     
     
@@ -89,12 +115,11 @@ extension PayCheckTableVC: UITableViewDataSource, UITableViewDelegate, SwipeTabl
         if let myCell = payCheckTable.dequeueReusableCell(withIdentifier: "payCell") as? PayTableCell {
             
             myCell.lblEmployeersName.text = paychecks[indexPath.row].employeer
-            myCell.lblWeekStarting.text = paychecks[indexPath.row].payPeriodStart
-            myCell.lblWeekEnding.text = paychecks[indexPath.row].payPeriodEnd
-            myCell.lblPayDate.text = paychecks[indexPath.row].payDate
             
-            //let hoursWorked = paychecks[indexPath.row].calculateHours()
-            //myCell.lblHoursWorked.text = "\(hoursWorked) Seconds"
+            myCell.lblWeekStarting.text = "Week Starting \(dateString(date: paychecks[indexPath.row]._payPeriodStart))"
+            myCell.lblWeekEnding.text = "Week Ending \(dateString(date: paychecks[indexPath.row]._payPeriodEnd))"
+            myCell.lblPayDate.text = "Pay Date \(dateString(date: paychecks[indexPath.row]._payDate))"
+            
             myCell.lblHoursWorked.text = paychecks[indexPath.row].returnTimeWorkedAsString()
             
             if paychecks[indexPath.row].payCheckIsVefified {
@@ -123,9 +148,24 @@ extension PayCheckTableVC: UITableViewDataSource, UITableViewDelegate, SwipeTabl
             //since you are not returning nil it will allow a left direction...
             let verifyPay = SwipeAction(style: .default, title: "Verify Pay") { (action, indexPath) in
                 print("Verify checked")
+                
+                if let itemToUpdate = self.paychecks?[indexPath.row] {
+                    
+                    do {
+                        try self.realm.write {
+                            //will make the boolean opposite of what it currently is
+                            itemToUpdate._payCheckIsVerified = !itemToUpdate._payCheckIsVerified
+                        }
+                    } catch {
+                            print("error changing to verified\(error)")
+                        }
+                    }
+                
+               
+                self.loadData()
             }
             
-            //customize the verify checked item here...
+            //customize the verify checked apperance or pic here...
             
             
             return [verifyPay]
@@ -136,7 +176,7 @@ extension PayCheckTableVC: UITableViewDataSource, UITableViewDelegate, SwipeTabl
         let editPaycheck = SwipeAction(style: .default, title: "Edit Info") { (action, indexPath) in
             //check verified code
             print("edit info pressed")
-            
+            //right now the only way to seague is through the storyboard.  Need to programmatically seague and send the index of the Paycheck or the paycheck object...
             
         }
         

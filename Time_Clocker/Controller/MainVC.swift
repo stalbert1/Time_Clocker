@@ -28,7 +28,7 @@ class MainVC: UIViewController, receivePunch {
     var payCheckToEdit: Paycheck?
     var timePunches: List<TimePunch>!
 
-    var lastPunch: TimePunch?
+    //var lastPunch: TimePunch?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,20 +118,39 @@ class MainVC: UIViewController, receivePunch {
     //delegate method for what happens when a punch is received from the DateSelectionVC
     func punchReceived(punch: TimePunch) {
         
-        if let item = payCheckToEdit {
-            
-            do {
-                try self.realm.write {
-                    item.timepunches.append(punch)
-                    //self.realm.delete(item)
-                }
+        if isInUpdateMode {
+            //first will need to remove the punch that needed updating at indexToUpdate
+            if let item = payCheckToEdit {
                 
-            } catch {
-                print("error \(error)")
+                do {
+                    try self.realm.write {
+                        item.timepunches.remove(at: indexToUpdate!)
+                        item.timepunches.insert(punch, at: indexToUpdate!)
+                    }
+                    
+                } catch {
+                    print("error \(error)")
+                }
             }
+            //then append new punch at said index
+            
+        } else {
+            if let item = payCheckToEdit {
+                
+                do {
+                    try self.realm.write {
+                        item.timepunches.append(punch)
+                        //self.realm.delete(item)
+                    }
+                    
+                } catch {
+                    print("error \(error)")
+                }
+        }
+        
         }
  
-        lastPunch = punch
+        //lastPunch = punch
         
         updateTable()
         isInUpdateMode = false
@@ -150,10 +169,6 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCell
             // handle action by updating model with deletion
             print("delete action initiated on \(indexPath.section), \(indexPath.row)")
             
-            //going to have to remove from the database and reload data
-            
-            //first step is to get the number of the list from the DB and see if you can make it match
-            
             //var timepunches = List<TimePunch>() lives in the payCheckToEdit?.timepunches
             if let item = self.payCheckToEdit {
                 
@@ -168,8 +183,6 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCell
                     print("error \(error)")
                 }
             }
-            //self.timePunches.remove(at: indexPath.row)
-            
             
             self.updateTable()
         }

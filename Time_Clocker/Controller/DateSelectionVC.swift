@@ -28,7 +28,6 @@ class DateSelectionVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view did load")
         selectionMade.timeIn = Date()
     }
     
@@ -40,8 +39,6 @@ class DateSelectionVC: UIViewController {
             pkrDateSelectionFrom.setDate(lastSelectedDateVerified, animated: true)
             pkrDateSelectionTo.setDate(lastSelectedDateVerified, animated: true)
         }
-        
-        print("view did appear")
         
     }
     

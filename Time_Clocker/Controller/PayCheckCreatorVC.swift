@@ -29,7 +29,7 @@ class PayCheckCreatorVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         txtEmployeerName.delegate = self
-        print("location of realm db...\(String(describing: Realm.Configuration.defaultConfiguration.fileURL))")
+        //print("location of realm db...\(String(describing: Realm.Configuration.defaultConfiguration.fileURL))")
 
     }
     
