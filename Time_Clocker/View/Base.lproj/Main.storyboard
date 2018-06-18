@@ -46,7 +46,6 @@
                                         </state>
                                         <connections>
                                             <action selector="createNewPaycheckPressed:" destination="tQ6-f4-Ms1" eventType="touchUpInside" id="lmS-ZH-7z0"/>
-                                            <segue destination="qxZ-Cr-aB5" kind="showDetail" id="gfh-gC-eJg"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -163,6 +162,7 @@
                         <outlet property="payCheckTable" destination="HM0-Ep-UwA" id="sge-tP-BTy"/>
                         <outlet property="segVerifiedSelected" destination="QFZ-gB-ryh" id="mfk-4I-6PV"/>
                         <segue destination="BYZ-38-t0r" kind="showDetail" identifier="showPunches" id="t0i-Eb-GfU"/>
+                        <segue destination="qxZ-Cr-aB5" kind="show" identifier="showPayDetails" id="0aU-VJ-NTP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Bp-pf-ApU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -178,18 +178,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="LwT-dK-4aF">
-                                <rect key="frame" x="0.0" y="67.333333333333329" width="375" height="74.999999999999986"/>
+                                <rect key="frame" x="0.0" y="67.333333333333329" width="375" height="99.999999999999986"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="JsM-wL-ZYh"/>
+                                    <constraint firstAttribute="height" constant="100" id="JsM-wL-ZYh"/>
                                 </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="549917314.66119695">
                                     <!--2018-06-05 18:48:34 +0000-->
                                 </date>
                             </datePicker>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="y5i-Lo-D6Q">
-                                <rect key="frame" x="0.0" y="168.66666666666666" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="193.66666666666666" width="375" height="99.999999999999972"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="X8X-Fh-boj"/>
+                                    <constraint firstAttribute="height" constant="100" id="X8X-Fh-boj"/>
                                 </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="549917394.60490203">
                                     <!--2018-06-05 18:49:54 +0000-->
@@ -202,13 +202,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay Date Ending..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gma-mb-CCS">
-                                <rect key="frame" x="16" y="145.33333333333334" width="343" height="20.333333333333343"/>
+                                <rect key="frame" x="16" y="170.33333333333334" width="343" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbj-pz-SN6">
-                                <rect key="frame" x="16" y="246.66666666666666" width="343" height="20.333333333333343"/>
+                                <rect key="frame" x="16" y="296.66666666666669" width="343" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -234,9 +234,9 @@
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="w4M-Fb-7uP">
-                                <rect key="frame" x="0.0" y="270" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="320" width="375" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="paE-kS-Rg3"/>
+                                    <constraint firstAttribute="height" constant="100" id="paE-kS-Rg3"/>
                                 </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="549917398.75927198">
                                     <!--2018-06-05 18:49:58 +0000-->
@@ -255,7 +255,7 @@
                                         <rect key="frame" x="186.66666666666663" y="0.0" width="186.33333333333337" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartQuotesType="no"/>
                                     </textField>
                                 </subviews>
                             </stackView>

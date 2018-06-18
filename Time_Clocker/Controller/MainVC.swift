@@ -85,6 +85,12 @@ class MainVC: UIViewController, receivePunch {
         if segue.identifier == "segMainVCtoDateVC" {
             let nextVC = segue.destination as? DateSelectionVC
             nextVC?.delegate = self
+            
+            //will send a time punch if the update in the swipe cell was selected.
+            if let timePunchToSend = sender as? TimePunch {
+                nextVC?.timePunchToEdit = timePunchToSend
+            }
+            
         }
     }
     
@@ -140,7 +146,6 @@ class MainVC: UIViewController, receivePunch {
                 do {
                     try self.realm.write {
                         item.timepunches.append(punch)
-                        //self.realm.delete(item)
                     }
                     
                 } catch {
@@ -150,8 +155,6 @@ class MainVC: UIViewController, receivePunch {
         
         }
  
-        //lastPunch = punch
-        
         updateTable()
         isInUpdateMode = false
     }
@@ -167,16 +170,11 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCell
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             // handle action by updating model with deletion
-            print("delete action initiated on \(indexPath.section), \(indexPath.row)")
-            
-            //var timepunches = List<TimePunch>() lives in the payCheckToEdit?.timepunches
             if let item = self.payCheckToEdit {
                 
                 do {
                     try self.realm.write {
-                        //item.timepunches.append(punch)
                         item.timepunches.remove(at: indexPath.row)
-                        //self.realm.delete(item)
                     }
                     
                 } catch {
@@ -189,11 +187,12 @@ extension MainVC: UITableViewDataSource, UITableViewDelegate, SwipeTableViewCell
         
         let updateAction = SwipeAction(style: .default, title: "Update") { action, indexPath in
             
-            print("updateAction triggered")
+            //print("updateAction triggered")
             self.isInUpdateMode = true
             //this triggers the segue and updates the indexpath that needs to be updated upon return
             self.indexToUpdate = indexPath.row
-            self.performSegue(withIdentifier: "segMainVCtoDateVC", sender: nil)
+            //sending the time punch so that it is starting from what is being edited.
+            self.performSegue(withIdentifier: "segMainVCtoDateVC", sender: self.timePunches[indexPath.row])
             
         }
         

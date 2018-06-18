@@ -26,6 +26,9 @@ class DateSelectionVC: UIViewController {
     
     var lastDateSelected : Date?
     
+    //this will be sent if the user entered from the update time punch, at which time the 2 date wheels will go to the sent value as opposed to the last stored time.
+    var timePunchToEdit: TimePunch?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         selectionMade.timeIn = Date()
@@ -33,13 +36,22 @@ class DateSelectionVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        let lastDate = UserDefaults.standard.object(forKey: "lastSelectedDate")
-        
-        if let lastSelectedDateVerified = lastDate as? Date {
-            pkrDateSelectionFrom.setDate(lastSelectedDateVerified, animated: true)
-            pkrDateSelectionTo.setDate(lastSelectedDateVerified, animated: true)
+        if timePunchToEdit == nil {
+            //we know we are not in update mode so lets restore the last selected dates...
+            let lastDate = UserDefaults.standard.object(forKey: "lastSelectedDate")
+            
+            if let lastSelectedDateVerified = lastDate as? Date {
+                pkrDateSelectionFrom.setDate(lastSelectedDateVerified, animated: true)
+                pkrDateSelectionTo.setDate(lastSelectedDateVerified, animated: true)
+            }
+            
+        } else {
+            //we know the user sent a time punch to edit, so set the 2 wheels to the sent times...
+            //at this point we know that timein or timeout cant be nil, because when they were created from the date selection the wheels always have a default value...
+            pkrDateSelectionFrom.setDate((timePunchToEdit?.timeIn)!, animated: true)
+            pkrDateSelectionTo.setDate((timePunchToEdit?.timeOut)!, animated: true)
+            
         }
-        
     }
     
     

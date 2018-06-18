@@ -32,13 +32,8 @@ class PayCheckTableVC: UIViewController {
     }
     
     @IBAction func verifiedSegChanged(_ sender: UISegmentedControl) {
-        
-        //maybe this should be incorperated inside the load data function..???
-        //reason being is when you make a change to verify the check you want it to dis appear from that list...
-        
+    
         loadData()
-        
-       
     }
     
     
@@ -88,6 +83,8 @@ class PayCheckTableVC: UIViewController {
     @IBAction func createNewPaycheckPressed(_ sender: UIButton) {
         
         print("create new paycheck pressed...")
+        //sending with no sender.  If update is selected will need to send with the Paycheck object selected.
+        performSegue(withIdentifier: "showPayDetails", sender: nil)
         
         
         
@@ -103,6 +100,21 @@ class PayCheckTableVC: UIViewController {
                 }
             }
         }
+        
+        if segue.identifier == "showPayDetails" {
+            print("segue performed item sent is \(String(describing: sender))")
+            //When seague is performed from the create paycheck button will send nil
+            //When segue is performed through update selection on the swipe cell it will send the optional paycheck object
+            //var paycheckDetailsToEdit: Paycheck? variable in the receivng VC
+            if let destination = segue.destination as? PayCheckCreatorVC {
+                if let payCheck = sender as? Paycheck {
+                    destination.paycheckDetailsToEdit = payCheck
+                }
+            }
+        }
+        
+        
+        
     }
     
 }
@@ -167,6 +179,10 @@ extension PayCheckTableVC: UITableViewDataSource, UITableViewDelegate, SwipeTabl
             
             //customize the verify checked apperance or pic here...
             
+            //light blue to match inside table color
+            verifyPay.backgroundColor = UIColor(red: 0.749, green: 0.839, blue: 0.937, alpha: 1.00)
+            verifyPay.hidesWhenSelected = true
+            verifyPay.textColor = UIColor.black
             
             return [verifyPay]
         }
@@ -174,45 +190,64 @@ extension PayCheckTableVC: UITableViewDataSource, UITableViewDelegate, SwipeTabl
         
         
         let editPaycheck = SwipeAction(style: .default, title: "Edit Info") { (action, indexPath) in
-            //check verified code
-            print("edit info pressed")
-            //right now the only way to seague is through the storyboard.  Need to programmatically seague and send the index of the Paycheck or the paycheck object...
+            
+            //print("edit info pressed")
+            self.performSegue(withIdentifier: "showPayDetails", sender: self.paychecks[indexPath.row])
             
         }
         
-        let addAction = SwipeAction(style: .destructive, title: "Add Time") { action, indexPath in
+        let addAction = SwipeAction(style: .default, title: "Add Time") { action, indexPath in
             
             //segue and send current Paycheck object
             self.performSegue(withIdentifier: "showPunches", sender: self.paychecks[indexPath.row])
             
         }
         
-        let deleteAction = SwipeAction(style: .default, title: "Delete") { action, indexPath in
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             
+            //make sure they want to delete the paycheck including time punches...
+            let alert = UIAlertController(title: "Warning", message: "Are you sure you want to delete this Paycheck, including all the Time Punches?", preferredStyle: .actionSheet)
             
-            //test out to delete the selected item...
-            
-            if let item = self.paychecks?[indexPath.row] {
-                
-                do {
-                    try self.realm.write {
-                        self.realm.delete(item)
-                    }
+            let deleteActionAlert = UIAlertAction(title: "Delete This Paycheck!", style: .default, handler: { (action) in
+                //print("Perform deletion")
+                if let item = self.paychecks?[indexPath.row] {
                     
-                } catch {
-                    print("error \(error)")
+                    do {
+                        try self.realm.write {
+                            self.realm.delete(item)
+                        }
+                        
+                    } catch {
+                        print("error \(error)")
+                    }
                 }
-            }
+                
+                 self.payCheckTable.reloadData()
+            })
             
-            self.payCheckTable.reloadData()
+            let cancelDelete = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(cancelDelete)
+            alert.addAction(deleteActionAlert)
+            self.present(alert, animated: true, completion: nil)
             
         }
         
         // customize the action appearance
+        addAction.backgroundColor = UIColor(red: 0.749, green: 0.839, blue: 0.937, alpha: 1.00)
+        addAction.textColor = UIColor.black
+        addAction.hidesWhenSelected = true
+        
+        //Medium Blue
+        editPaycheck.backgroundColor = UIColor(red: 0.375, green: 0.600, blue: 0.950, alpha: 1.00)
+        editPaycheck.textColor = UIColor.black
+        editPaycheck.hidesWhenSelected = true
+        
+        deleteAction.textColor = UIColor.black
+        
         //deleteAction.image = UIImage(named: "delete")
         //updateAction.image = UIImage(named: "update")
         
-        return [editPaycheck, addAction, deleteAction]
+        return [deleteAction, editPaycheck, addAction]
     }
     
     
