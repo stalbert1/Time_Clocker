@@ -13,8 +13,6 @@ import RealmSwift
 class MainVC: UIViewController, receivePunch {
     
     @IBOutlet weak var mainTableView: UITableView!
-    @IBOutlet weak var btnTimeStart: UIButton!
-    @IBOutlet weak var btnTimeStop: UIButton!
     @IBOutlet weak var lblTotalTime: UILabel!
     
     var totalTime : TimeInterval = 0
@@ -45,29 +43,6 @@ class MainVC: UIViewController, receivePunch {
         timePunches = payCheckToEdit?.timepunches
     }
     
-    @IBAction func timeStartPressed(_ sender: UIButton) {
-        
-        btnTimeStart.isEnabled = false
-        btnTimeStop.isEnabled = true
-        
-        //let currentPunch = TimePunch(timeInPunch: Date())
-        let currentPunch = TimePunch()
-        currentPunch.timeIn = Date()
-        
-        updateTable()
-        
-    }
-    
-    @IBAction func timeStopPressed(_ sender: UIButton) {
-        
-        btnTimeStart.isEnabled = true
-        btnTimeStop.isEnabled = false
-        
-        //this would crash for now
-        //timePunches[timePunches.count-1].timeOut = Date()
-        updateTable()
-        
-    }
     
     @IBAction func enterTimeManuallyPressed(_ sender: UIButton) {
         

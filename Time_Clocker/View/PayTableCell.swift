@@ -21,7 +21,7 @@ class PayTableCell: SwipeTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        print("Paytable cell View custom")
+        //print("Paytable cell View custom")
     }
     
 

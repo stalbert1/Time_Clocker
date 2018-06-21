@@ -23,8 +23,8 @@ class TimePunch: Object{
     
     func returnTimeInString () -> String {
         let myFormatter = DateFormatter()
-        myFormatter.dateStyle = .short
-        myFormatter.timeStyle = .short
+        let format = "EE-MMM-dd-yyyy"
+        myFormatter.dateFormat = format
         
         if timeIn == nil {
             return "timer not started"
@@ -37,8 +37,8 @@ class TimePunch: Object{
     func returnTimeOutString () -> String {
         
         let myFormatter = DateFormatter()
-        myFormatter.dateStyle = .short
-        myFormatter.timeStyle = .short
+        let format = "EE-MMM-dd-yyyy"
+        myFormatter.dateFormat = format
         
         if self.timeOut == nil {
             return "timer running"

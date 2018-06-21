@@ -60,7 +60,7 @@
                                     <constraint firstAttribute="trailing" secondItem="QFZ-gB-ryh" secondAttribute="trailing" constant="8" id="wPp-Uq-9Fy"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HM0-Ep-UwA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HM0-Ep-UwA">
                                 <rect key="frame" x="0.0" y="44" width="375" height="609"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -68,7 +68,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4oN-CI-azu" id="GsL-PP-NSC">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cgw-Te-Xjq">
@@ -333,11 +333,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="FvJ-WV-iLM">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="FvJ-WV-iLM">
                                         <rect key="frame" x="2" y="109" width="371" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUo-EM-nwN" customClass="STButton" customModule="Time_Clocker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="184" height="50"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                                 <state key="normal" title="Return">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -346,28 +346,8 @@
                                                     <action selector="returnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wMS-en-y9b"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYE-XF-VO1" customClass="STButton" customModule="Time_Clocker" customModuleProvider="target">
-                                                <rect key="frame" x="53.666666666666664" y="0.0" width="79.666666666666686" height="50"/>
-                                                <color key="backgroundColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Time Start">
-                                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="timeStartPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VYN-K8-o2K"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOG-Ls-83e" customClass="STButton" customModule="Time_Clocker" customModuleProvider="target">
-                                                <rect key="frame" x="136.33333333333334" y="0.0" width="77.333333333333343" height="50"/>
-                                                <color key="backgroundColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Time Stop">
-                                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="timeStopPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bJ-i5-IUy"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWG-dt-BUY" customClass="STButton" customModule="Time_Clocker" customModuleProvider="target">
-                                                <rect key="frame" x="216.66666666666663" y="0.0" width="154.33333333333337" height="50"/>
+                                                <rect key="frame" x="187" y="0.0" width="184" height="50"/>
                                                 <color key="backgroundColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Enter Time Manually">
                                                     <color key="titleColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -474,8 +454,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="btnTimeStart" destination="FYE-XF-VO1" id="sMd-Tq-t5z"/>
-                        <outlet property="btnTimeStop" destination="fOG-Ls-83e" id="cSF-0C-Zdd"/>
                         <outlet property="lblTotalTime" destination="CqO-eZ-xov" id="wQ6-JI-K04"/>
                         <outlet property="mainTableView" destination="zGY-Cv-Jpr" id="t5Z-qn-cBn"/>
                     </connections>

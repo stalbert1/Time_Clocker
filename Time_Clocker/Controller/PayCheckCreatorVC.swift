@@ -55,8 +55,6 @@ class PayCheckCreatorVC: UIViewController, UITextFieldDelegate {
         //places text box at the bottom and expands the 3 date pickers
         self.view.endEditing(true)
         
-        print(payEndConstraint)
-        
         UIView.animate(withDuration: 0.7) {
             self.payDateConstraint.constant = 100
             self.payEndConstraint.constant = 100
@@ -129,7 +127,7 @@ class PayCheckCreatorVC: UIViewController, UITextFieldDelegate {
                     print("error \(error)")
                 }
             }
-            print("Hopefully item is updated...")
+            //print("Hopefully item is updated...")
         }
       
         

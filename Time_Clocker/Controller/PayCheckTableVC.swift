@@ -32,7 +32,6 @@ class PayCheckTableVC: UIViewController {
     }
     
     @IBAction func verifiedSegChanged(_ sender: UISegmentedControl) {
-    
         loadData()
     }
     
@@ -43,20 +42,16 @@ class PayCheckTableVC: UIViewController {
     
     func loadData() {
         
-        //Show hide verified changed...
+        //Sorts and shows data in realm database based on selected index of verified or not.
         if segVerifiedSelected.selectedSegmentIndex == 0 {
             
             //have to start off by showing all then filtering down from that point.
             paychecks = realm.objects(Paycheck.self)
-            print("show unverified selected which is new or default")
-            paychecks = paychecks.filter("_payCheckIsVerified == %@", false).sorted(byKeyPath: "_employeerName", ascending: true)
-            //loadData()
+            paychecks = paychecks.filter("_payCheckIsVerified == %@", false).sorted(byKeyPath: "_payDate", ascending: true)
         } else {
-            
             paychecks = realm.objects(Paycheck.self)
-            print("Verified selected")
-            paychecks = paychecks.filter("_payCheckIsVerified == %@", true).sorted(byKeyPath: "_employeerName", ascending: true)
-            //payCheckTable.reloadData()
+            //print("Verified selected")
+            paychecks = paychecks.filter("_payCheckIsVerified == %@", true).sorted(byKeyPath: "_payDate", ascending: true)
         }
         
         //this will load all objects in the database.  Not using this for now.  Could put an extra seg controller segment and do this as a 3rd choice...
@@ -68,10 +63,9 @@ class PayCheckTableVC: UIViewController {
     func dateString (date: Date?) -> String {
         
         let myFormatter = DateFormatter()
-        myFormatter.dateStyle = .short
-        myFormatter.timeStyle = .none
-        
-        
+        let format = "EE-MMM-dd-yy"
+        myFormatter.dateFormat = format
+
         if date == nil {
             return "No Date"
         } else {
@@ -82,7 +76,7 @@ class PayCheckTableVC: UIViewController {
     
     @IBAction func createNewPaycheckPressed(_ sender: UIButton) {
         
-        print("create new paycheck pressed...")
+        //print("create new paycheck pressed...")
         //sending with no sender.  If update is selected will need to send with the Paycheck object selected.
         performSegue(withIdentifier: "showPayDetails", sender: nil)
         
@@ -92,7 +86,7 @@ class PayCheckTableVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //this will occur slightly before the actual seague...
-        print("code to perform when transition is made...")
+        //print("code to perform when transition is made...")
         if segue.identifier == "showPunches" {
             if let destination = segue.destination as? MainVC {
                 if let payCheck = sender as? Paycheck {
@@ -102,7 +96,7 @@ class PayCheckTableVC: UIViewController {
         }
         
         if segue.identifier == "showPayDetails" {
-            print("segue performed item sent is \(String(describing: sender))")
+            //print("segue performed item sent is \(String(describing: sender))")
             //When seague is performed from the create paycheck button will send nil
             //When segue is performed through update selection on the swipe cell it will send the optional paycheck object
             //var paycheckDetailsToEdit: Paycheck? variable in the receivng VC
@@ -159,7 +153,7 @@ extension PayCheckTableVC: UITableViewDataSource, UITableViewDelegate, SwipeTabl
         
             //since you are not returning nil it will allow a left direction...
             let verifyPay = SwipeAction(style: .default, title: "Verify Pay") { (action, indexPath) in
-                print("Verify checked")
+                //print("Verify checked")
                 
                 if let itemToUpdate = self.paychecks?[indexPath.row] {
                     
@@ -243,6 +237,7 @@ extension PayCheckTableVC: UITableViewDataSource, UITableViewDelegate, SwipeTabl
         editPaycheck.hidesWhenSelected = true
         
         deleteAction.textColor = UIColor.black
+        deleteAction.hidesWhenSelected = true
         
         //deleteAction.image = UIImage(named: "delete")
         //updateAction.image = UIImage(named: "update")
