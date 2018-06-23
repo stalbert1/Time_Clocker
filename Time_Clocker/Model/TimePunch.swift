@@ -23,13 +23,16 @@ class TimePunch: Object{
     
     func returnTimeInString () -> String {
         let myFormatter = DateFormatter()
-        let format = "EE-MMM-dd-yyyy"
+        //let format = "EE-MMM-dd-yyyy"
+        let format = "HH:mm EE-MMM-dd-yyyy"
         myFormatter.dateFormat = format
         
         if timeIn == nil {
             return "timer not started"
         } else {
-            return myFormatter.string(from: timeIn!)
+            let timeInStr = "Time in..."
+            let timeStr = myFormatter.string(from: timeIn!)
+            return timeInStr + timeStr
         }
         
     }
@@ -37,13 +40,15 @@ class TimePunch: Object{
     func returnTimeOutString () -> String {
         
         let myFormatter = DateFormatter()
-        let format = "EE-MMM-dd-yyyy"
+        let format = "HH:mm EE-MMM-dd-yyyy"
         myFormatter.dateFormat = format
         
         if self.timeOut == nil {
             return "timer running"
         } else {
-            return myFormatter.string(from: timeOut!)
+            let timeOutStr = "Time out..."
+            let timeStr = myFormatter.string(from: timeOut!)
+            return timeOutStr + timeStr
         }
         
     }
